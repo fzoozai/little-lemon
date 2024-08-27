@@ -1,7 +1,7 @@
-import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import BookingForm from "./components/BookingForm";
 import { useReducer } from "react";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import "./App.css";
+import BookingForm from "./components/BookingForm";
 import { initializeTimes, updateTimes } from "./reducerFunctions";
 
 const App = () => {
@@ -12,7 +12,7 @@ const App = () => {
   );
 
   const handleDateChange = (selectedDate) => {
-    dispatch({ type: "UPDATE_TIMES", date: selectedDate });
+    dispatch({ type: "UPDATE_TIMES", date: new Date(selectedDate) });
   };
 
   return (
