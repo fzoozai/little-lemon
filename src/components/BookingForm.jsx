@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../BookingForm.css";
 
-const BookingForm = ({ onDateChange, availableTimes }) => {
+const BookingForm = ({ onDateChange = () => {}, availableTimes = [] }) => {
   const [formData, setFormData] = useState({
     date: "",
     time: "",
@@ -29,7 +29,7 @@ const BookingForm = ({ onDateChange, availableTimes }) => {
         onSubmit={handleSubmit}
         aria-labelledby="booking-form-title"
       >
-        <h2 id="booking-form-title">Booking Form</h2>{" "}
+        <h2 id="booking-form-title">Book Now</h2>
         <label htmlFor="res-date">Choose date</label>
         <input
           name="date"
