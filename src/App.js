@@ -2,6 +2,7 @@ import { useReducer } from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "./App.css";
 import BookingForm from "./components/BookingForm";
+import ConfirmedBooking from "./components/ConfirmedBooking";
 import { initializeTimes, updateTimes } from "./reducerFunctions";
 
 const App = () => {
@@ -30,6 +31,7 @@ const App = () => {
                 />
               }
             />
+            <Route path="/confirmed" element={<ConfirmedBooking />} />
           </Routes>
         </main>
         <footer className="footer"></footer>

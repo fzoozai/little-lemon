@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../BookingForm.css";
+import { useNavigate } from "react-router-dom";
 
 const BookingForm = ({ onDateChange = () => {}, availableTimes = [] }) => {
   const [formData, setFormData] = useState({
@@ -8,6 +9,9 @@ const BookingForm = ({ onDateChange = () => {}, availableTimes = [] }) => {
     guests: "",
     occasion: "",
   });
+
+  // Correctly call useNavigate at the top level of the component
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,6 +24,12 @@ const BookingForm = ({ onDateChange = () => {}, availableTimes = [] }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("formData", formData);
+    // Use the imported API function correctly
+    if (window.submitAPI(formData)) {
+      navigate("/confirmed"); // Correctly navigate upon successful submission
+    } else {
+      console.log("Submission failed");
+    }
   };
 
   return (
