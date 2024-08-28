@@ -129,6 +129,7 @@ const BookingForm = ({ onDateChange = () => {}, availableTimes = [] }) => {
         ) : null}
 
         <input
+          className="btn"
           type="submit"
           value="Make Your reservation"
           aria-label="Submit reservation form"
