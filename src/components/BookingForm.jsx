@@ -7,11 +7,10 @@ import "../BookingForm.css";
 const BookingForm = ({ onDateChange = () => {}, availableTimes = [] }) => {
   const navigate = useNavigate();
 
-  // Define the validation schema using Yup
   const validationSchema = Yup.object({
     date: Yup.date()
       .min(
-        new Date(new Date().setHours(0, 0, 0, 0)),
+        new Date(new Date().setHours(0, 0, 0, 0)), // Ensure the date is not in the past
         "Date cannot be in the past"
       )
       .required("Required"),
@@ -23,7 +22,6 @@ const BookingForm = ({ onDateChange = () => {}, availableTimes = [] }) => {
     occasion: Yup.string().required("Required"),
   });
 
-  // Initialize Formik
   const formik = useFormik({
     initialValues: {
       date: "",
@@ -31,7 +29,7 @@ const BookingForm = ({ onDateChange = () => {}, availableTimes = [] }) => {
       guests: "",
       occasion: "",
     },
-    validationSchema, // Apply the validation schema
+    validationSchema,
     onSubmit: (values) => {
       if (window.submitAPI(values)) {
         navigate("/confirmed");
@@ -39,6 +37,8 @@ const BookingForm = ({ onDateChange = () => {}, availableTimes = [] }) => {
         console.log("Submission failed");
       }
     },
+    validateOnChange: true,
+    validateOnBlur: true,
   });
 
   return (
@@ -61,11 +61,10 @@ const BookingForm = ({ onDateChange = () => {}, availableTimes = [] }) => {
             onDateChange(e.target.value);
           }}
           onBlur={formik.handleBlur}
-          min={new Date().toISOString().split("T")[0]} // Future dates only
           required
           aria-required="true"
         />
-        {formik.touched.date && formik.errors.date ? (
+        {formik.errors.date ? (
           <div className="error">{formik.errors.date}</div>
         ) : null}
 
@@ -135,7 +134,7 @@ const BookingForm = ({ onDateChange = () => {}, availableTimes = [] }) => {
           type="submit"
           value="Make Your reservation"
           aria-label="Submit reservation form"
-          disabled={!formik.isValid || !formik.dirty} // Disable if the form is not valid or hasn't been touched
+          disabled={!formik.isValid || !formik.dirty}
         />
       </form>
     </div>
