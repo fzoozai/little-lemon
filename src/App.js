@@ -1,8 +1,13 @@
 import { useReducer } from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "./App.css";
-import BookingForm from "./components/BookingForm";
+import HomePage from "./pages/HomePage";
+import BookingPage from "./pages/BookingPage";
 import ConfirmedBooking from "./components/ConfirmedBooking";
+import About from "./components/About";
+import Nav from "./components/Nav";
+import Footer from "./components/Footer";
+
 import { initializeTimes, updateTimes } from "./reducerFunctions";
 
 const App = () => {
@@ -19,22 +24,24 @@ const App = () => {
   return (
     <Router>
       <div className="app-container">
-        <nav className="nav"></nav>
+        <Nav />
         <main className="main">
           <Routes>
+            <Route path="/" element={<HomePage />} />
             <Route
-              path="/"
+              path="/booking"
               element={
-                <BookingForm
+                <BookingPage
                   availableTimes={availableTimes}
                   onDateChange={handleDateChange}
                 />
               }
             />
             <Route path="/confirmed" element={<ConfirmedBooking />} />
+            <Route path="/about" element={<About />} />
           </Routes>
         </main>
-        <footer className="footer"></footer>
+        <Footer />
       </div>
     </Router>
   );

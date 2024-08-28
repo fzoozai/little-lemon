@@ -1,0 +1,37 @@
+/* Nav.css */
+
+.nav {
+  background-color: #333;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center; /* Centers the nav items horizontally */
+}
+
+.nav-item {
+  margin: 0 15px; /* Space out the nav items */
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #ff9900; /* Change color on hover */
+}
+
+.nav-link:active {
+  color: #cc6600; /* Change color when link is clicked */
+}

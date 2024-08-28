@@ -48,8 +48,6 @@ const BookingForm = ({ onDateChange = () => {}, availableTimes = [] }) => {
         onSubmit={formik.handleSubmit}
         aria-labelledby="booking-form-title"
       >
-        <h2 id="booking-form-title">Book Now</h2>
-
         <label htmlFor="res-date">Choose date</label>
         <input
           name="date"
